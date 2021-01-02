@@ -16,7 +16,7 @@ export class ScpBot extends TelegramBot {
         this.replyTimeout = +config.get('REPLY_TIMEOUT');
         this.bot.start(this.onStart.bind(this));
         this.bot.help(this.onHelp.bind(this));
-        this.bot.hears(/(\d+)/, this.onNumber.bind(this));
+        this.bot.hears(/^(\d+)$/, this.onNumber.bind(this));
         this.bot.hears(/.*/, ScpBot.onNotRecognized);
     }
 
