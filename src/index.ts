@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { ScpBot } from './ScpBot';
-import { AppConfig } from './AppConfig';
+import { AppConfig } from './utils/AppConfig';
 
 dotenv.config();
 

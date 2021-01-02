@@ -1,5 +1,5 @@
 import ApiService from "./ApiService";
-import { ScpObject } from "./types";
+import { ScpObject } from "../types";
 
 export default class ScpApi extends ApiService {
     getInfo(objectNumber: number): Promise<ScpObject> {

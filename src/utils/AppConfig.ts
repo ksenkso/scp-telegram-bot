@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 export class AppConfig {
     static defaults = [
         'BOT_TOKEN',
-        'SCP_API_URL'
+        'SCP_API_URL',
+        'REPLY_TIMEOUT'
     ];
 
     private vars: Map<string, string> = new Map<string, string>();
