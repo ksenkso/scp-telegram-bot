@@ -4,6 +4,7 @@ import { AppConfig } from './utils/AppConfig';
 import Messages from './utils/messages';
 import TelegramBot from './utils/TelegramBot';
 import { ScpObject } from './types';
+import ObjectView from './utils/ObjectView';
 
 export class ScpBot extends TelegramBot {
     private api: ScpApi;
@@ -36,7 +37,7 @@ export class ScpBot extends TelegramBot {
     }
 
     private static buildObjectReply(ctx: TelegrafContext, info: ScpObject) {
-        ctx.replyWithMarkdown(`[${info.name}](${info.link})`);
+        ctx.replyWithMarkdown(new ObjectView(info).toString());
     }
 
     findObject(ctx: TelegrafContext, objectNumber: number) {
