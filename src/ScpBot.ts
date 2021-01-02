@@ -13,9 +13,10 @@ export class ScpBot extends TelegramBot {
         super(config);
         this.api = new ScpApi(config);
         this.replyTimeout = +config.get('REPLY_TIMEOUT');
+        this.bot.start(this.onStart.bind(this));
+        this.bot.help(this.onHelp.bind(this));
         this.bot.hears(/(\d+)/, this.onNumber.bind(this));
-        this.bot.command('start', this.onStart.bind(this));
-        this.bot.command('help', this.onHelp.bind(this));
+        this.bot.hears(/.*/, ScpBot.onNotRecognized);
     }
 
     private onNumber(ctx: TelegrafContext) {
@@ -24,6 +25,10 @@ export class ScpBot extends TelegramBot {
         } else {
             ScpBot.replyNotFound(ctx);
         }
+    }
+
+    private static onNotRecognized(ctx: TelegrafContext) {
+        ctx.reply(Messages.notRecognized)
     }
 
     private static replyNotFound(ctx: TelegrafContext) {
