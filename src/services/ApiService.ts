@@ -11,9 +11,15 @@ export default class ApiService {
         })
     }
 
-    protected async get<T = any>(url: string): Promise<T> {
+    protected async get<T = any>(url: string): Promise<T | null> {
         // TODO: add error handling
         return this.transport.get(url)
-            .then(res => res.data as T)
+            .then(res => {
+                if (res.status === 200) {
+                    return res.data as T
+                } else {
+                    return null
+                }
+            })
     }
 }

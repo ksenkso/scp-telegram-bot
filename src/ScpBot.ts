@@ -41,7 +41,11 @@ export class ScpBot extends TelegramBot {
 
         this.api.getInfo(objectNumber)
             .then(info => {
-                ScpBot.buildObjectReply(ctx, info);
+                if (info) {
+                    ScpBot.buildObjectReply(ctx, info);
+                } else {
+                    ScpBot.replyNotFound(ctx);
+                }
             })
             .catch(err => {
                 console.error(err);
